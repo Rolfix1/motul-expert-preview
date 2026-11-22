@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#1b2731"/><stop offset="1" stop-color="#090d12"/></linearGradient>
+    <linearGradient id="shine" x2="1"><stop stop-color="#e52b3a"/><stop offset="1" stop-color="#ff5965"/></linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="14" height="630" fill="url(#shine)"/>
+  <rect x="66" y="56" width="64" height="64" rx="15" fill="#e52b3a"/>
+  <text x="98" y="100" fill="#fff" font-family="Arial,sans-serif" font-size="27" font-weight="700" text-anchor="middle">МЭ</text>
+  <text x="151" y="82" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="27" font-weight="700" letter-spacing=".4">МОТЮЛЬ ЭКСПЕРТ</text>
+  <text x="153" y="108" fill="#aab5bf" font-family="Arial,sans-serif" font-size="15" letter-spacing="1.8">АВТОСЕРВИС В РЯЗАНИ</text>
+  <path d="M66 150H1135" stroke="#3b4852"/>
+  <text x="68" y="196" fill="#ff4352" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="2">ДИАГНОСТИКА · РЕМОНТ · ОБСЛУЖИВАНИЕ</text>
+  <text x="66" y="264" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="43" font-weight="700">Помогаем вашему</text>
+  <text x="66" y="316" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="43" font-weight="700">автомобилю быть в форме</text>
+  <text x="68" y="363" fill="#aab5bf" font-family="Arial,sans-serif" font-size="18">Профессиональный подход к каждой детали.</text>
+  <path d="M66 402H1135" stroke="#3b4852"/>
+  <text x="68" y="443" fill="#ff4352" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">АДРЕС</text>
+  <text x="68" y="474" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="18">ул. Ленинского Комсомола, 5Б · 1 этаж</text>
+  <text x="68" y="526" fill="#ff4352" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">ЧАСЫ РАБОТЫ</text>
+  <text x="68" y="556" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="18">Вт–сб · 9:00–20:00</text>
+  <text x="689" y="443" fill="#ff4352" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.5">ЗАПИСЬ ПО ТЕЛЕФОНУ</text>
+  <text x="689" y="483" fill="#f5f7f9" font-family="Arial,sans-serif" font-size="29" font-weight="700">+7 (4912) 99-02-42</text>
+  <text x="690" y="526" fill="#aab5bf" font-family="Arial,sans-serif" font-size="19">+7 (920) 975-11-10</text>
+  <path d="M66 584H1135" stroke="#3b4852"/>
+  <text x="68" y="610" fill="#aab5bf" font-family="Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.5">МОТЮЛЬ ЭКСПЕРТ  /  РЯЗАНЬ</text>
+</svg>

@@ -368,5 +368,34 @@
       document.addEventListener('click',event=>{if(!mobileMenu.hidden&&!event.target.closest('.site-header'))closeMobileMenu()});
     }
   </script>
+  <style>
+    @media(max-width:700px){
+      /* iOS Safari zooms text fields smaller than 16px when they receive focus. */
+      input:not([type="checkbox"]):not([type="radio"]),select,textarea{font-size:16px!important}
+    }
+    .photo-lightbox{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top)) 24px max(24px,env(safe-area-inset-bottom));background:#050709ed;backdrop-filter:blur(12px)}
+    .photo-lightbox[hidden]{display:none}
+    .photo-lightbox img{display:block;max-width:min(92vw,1400px);max-height:82vh;object-fit:contain;border-radius:10px;box-shadow:0 24px 90px #0009}
+    .photo-lightbox-caption{margin-top:12px;color:#f4f4f3;text-align:center;font-size:14px}
+    .photo-lightbox-close{position:absolute;top:max(14px,env(safe-area-inset-top));right:max(14px,env(safe-area-inset-right));width:48px;height:48px;border:1px solid #ffffff50;border-radius:50%;background:#191d22;color:#fff;font-size:30px;line-height:1;cursor:pointer}
+    body.photo-lightbox-open{overflow:hidden}
+  </style>
+  <script>
+    const photoTrackForViewer=document.querySelector('#photo-track');
+    if(photoTrackForViewer){
+      const lightbox=document.createElement('div');
+      lightbox.className='photo-lightbox';lightbox.hidden=true;lightbox.setAttribute('role','dialog');lightbox.setAttribute('aria-modal','true');lightbox.setAttribute('aria-label','Просмотр фотографии');
+      const closeButton=document.createElement('button');closeButton.className='photo-lightbox-close';closeButton.type='button';closeButton.setAttribute('aria-label','Закрыть фотографию');closeButton.textContent='×';
+      const image=document.createElement('img');image.alt='';
+      const caption=document.createElement('div');caption.className='photo-lightbox-caption';
+      const content=document.createElement('div');content.append(image,caption);lightbox.append(closeButton,content);document.body.append(lightbox);
+      let previousFocus=null;
+      const closePhoto=()=>{lightbox.hidden=true;document.body.classList.remove('photo-lightbox-open');if(previousFocus)previousFocus.focus({preventScroll:true})};
+      photoTrackForViewer.addEventListener('click',event=>{const link=event.target.closest('a');if(!link)return;event.preventDefault();const thumb=link.querySelector('img');if(!thumb)return;previousFocus=link;image.src=thumb.currentSrc||thumb.src;image.alt=thumb.alt;caption.textContent=thumb.alt;lightbox.hidden=false;document.body.classList.add('photo-lightbox-open');closeButton.focus({preventScroll:true})});
+      closeButton.addEventListener('click',closePhoto);
+      lightbox.addEventListener('click',event=>{if(event.target===lightbox)closePhoto()});
+      document.addEventListener('keydown',event=>{if(!lightbox.hidden&&event.key==='Escape')closePhoto()});
+    }
+  </script>
 </body>
 </html>

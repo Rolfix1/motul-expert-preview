@@ -88,7 +88,15 @@
     <label class="search" aria-label="Поиск по услугам и ценам">⌕ <input id="site-search" type="search" placeholder="Поиск по услугам и ценам"></label>
     <nav class="nav"><a href="#about">О сервисе</a><a href="#services">Услуги</a><a href="#prices">Цены</a><a href="#faq">Вопросы</a><a href="#contacts">Контакты</a></nav>
     <a class="header-phone" href="tel:+74912990242">+7 (4912) 99‑02‑42</a><button class="burger" aria-label="Перейти к контактам" onclick="document.querySelector('#contacts').scrollIntoView({behavior:'smooth'})">☰</button>
-  </div></header>
+  </div>
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Мобильная навигация" hidden>
+    <a href="#about">О сервисе</a>
+    <a href="#services">Услуги</a>
+    <a href="#prices">Цены</a>
+    <a href="#faq">Вопросы</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+  </header>
   <main id="top">
     <section class="hero"><div class="hero-backgrounds" aria-hidden="true"><span class="hero-photo" style="--photo:url('https://motulexpert62.ru/img/photos/06-boks-krasnaya.webp')"></span><span class="hero-photo" style="--photo:url('https://motulexpert62.ru/img/photos/07-boks-podemniki.webp')"></span><span class="hero-photo" style="--photo:url('https://motulexpert62.ru/img/photos/14-rabota-kapot.webp')"></span></div><div class="hero-ambient" aria-hidden="true"></div><div class="hero-tech" aria-hidden="true"></div><div class="hero-neon" aria-hidden="true"></div><div class="hero-glint" aria-hidden="true"></div><div class="hero-glass" aria-hidden="true"><i class="glass-drop" style="--drop-top:8%;--drop-left:12%;--drop-speed:15s;--drop-delay:-5s;--trail:42px"></i><i class="glass-drop" style="--drop-top:24%;--drop-left:27%;--drop-width:17px;--drop-height:29px;--drop-speed:18s;--drop-delay:-12s;--trail:54px"></i><i class="glass-drop" style="--drop-top:3%;--drop-left:43%;--drop-speed:12s;--drop-delay:-2s"></i><i class="glass-drop" style="--drop-top:34%;--drop-left:58%;--drop-width:10px;--drop-height:18px;--drop-speed:16s;--drop-delay:-10s;--trail:28px"></i><i class="glass-drop" style="--drop-top:13%;--drop-left:71%;--drop-width:18px;--drop-height:31px;--drop-speed:19s;--drop-delay:-7s;--trail:58px"></i><i class="glass-drop" style="--drop-top:48%;--drop-left:84%;--drop-speed:14s;--drop-delay:-3s;--trail:32px"></i><i class="glass-drop" style="--drop-top:62%;--drop-left:18%;--drop-width:10px;--drop-height:17px;--drop-speed:17s;--drop-delay:-14s;--trail:27px"></i><i class="glass-drop" style="--drop-top:57%;--drop-left:48%;--drop-speed:13s;--drop-delay:-8s;--trail:38px"></i><i class="glass-drop" style="--drop-top:71%;--drop-left:67%;--drop-width:16px;--drop-height:27px;--drop-speed:20s;--drop-delay:-16s;--trail:48px"></i><i class="glass-drop" style="--drop-top:21%;--drop-left:93%;--drop-width:11px;--drop-height:18px;--drop-speed:15s;--drop-delay:-11s;--trail:30px"></i></div><div class="wrap hero-grid">
       <div><div class="open-pill hero-enter"><i class="open-dot"></i> Открыто сейчас · до 20:00</div><a class="hero-rating hero-enter" href="https://2gis.ru/ryazan/firm/70000001023698244/tab/reviews" target="_blank" rel="noopener"><strong>4,6</strong><span>из 5 · 2ГИС<br>Открыть отзывы ↗</span></a><h1 class="hero-enter">АВТОСЕРВИС<br>«МОТЮЛЬ ЭКСПЕРТ»<span>В РЯЗАНИ</span></h1>
@@ -282,6 +290,9 @@
     .hero-backgrounds{inset:0;transform:none!important;transition:none;will-change:auto;-webkit-mask-image:linear-gradient(180deg,#000 0%,#000 calc(100% - 180px),transparent 100%);mask-image:linear-gradient(180deg,#000 0%,#000 calc(100% - 180px),transparent 100%)}
     .hero-visual{transform:none!important;transition:none;will-change:auto}
     @keyframes heroPhotoCycle{0%{opacity:0;transform:scale(1.025)}7%,27%{opacity:.76}38%{opacity:0;transform:scale(1.08)}100%{opacity:0;transform:scale(1.025)}}
+    @keyframes mobileMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:700px){.mobile-nav:not([hidden]){position:absolute;z-index:21;top:calc(100% + 8px);left:14px;right:14px;display:grid;gap:4px;padding:8px;border:1px solid #34383b;border-radius:10px;background:#17191bf5;box-shadow:0 16px 40px #0009;backdrop-filter:blur(16px);animation:mobileMenuIn .18s ease-out}.mobile-nav a{padding:12px 14px;border-radius:7px;color:#f4f4f3;text-decoration:none;font-size:14px;font-weight:600}.mobile-nav a:active{background:#ffffff10}}
+    @media(prefers-reduced-motion:reduce){.mobile-nav:not([hidden]){animation:none}}
   </style>
   <script>
     document.querySelector('.symptom-result a[href="#booking"]')?.addEventListener('click',()=>{
@@ -316,6 +327,22 @@
     document.querySelector('#book-selected-works')?.addEventListener('click',()=>{
       if(!bookingSelectionSync)bookingSelectionPrefix=bookingWorkField.value.trim();
     },true);
+  </script>
+  <script>
+    const mobileMenuButton=document.querySelector('.burger');
+    const mobileMenu=document.querySelector('#mobile-nav');
+    if(mobileMenuButton&&mobileMenu){
+      mobileMenuButton.removeAttribute('onclick');
+      mobileMenuButton.type='button';
+      mobileMenuButton.setAttribute('aria-controls','mobile-nav');
+      mobileMenuButton.setAttribute('aria-expanded','false');
+      mobileMenuButton.setAttribute('aria-label','Открыть меню');
+      const closeMobileMenu=()=>{mobileMenu.hidden=true;mobileMenuButton.setAttribute('aria-expanded','false');mobileMenuButton.setAttribute('aria-label','Открыть меню');mobileMenuButton.textContent='☰'};
+      mobileMenuButton.addEventListener('click',()=>{const open=mobileMenu.hidden;mobileMenu.hidden=!open;mobileMenuButton.setAttribute('aria-expanded',String(open));mobileMenuButton.setAttribute('aria-label',open?'Закрыть меню':'Открыть меню');mobileMenuButton.textContent=open?'×':'☰'});
+      mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileMenu));
+      document.addEventListener('keydown',event=>{if(event.key==='Escape')closeMobileMenu()});
+      document.addEventListener('click',event=>{if(!mobileMenu.hidden&&!event.target.closest('.site-header'))closeMobileMenu()});
+    }
   </script>
 </body>
 </html>

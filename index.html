@@ -304,6 +304,14 @@
     @keyframes heroPhotoCycle{0%{opacity:0;transform:scale(1.025)}7%,27%{opacity:.76}38%{opacity:0;transform:scale(1.08)}100%{opacity:0;transform:scale(1.025)}}
     @keyframes mobileMenuIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:700px){.mobile-nav:not([hidden]){position:absolute;z-index:21;top:calc(100% + 8px);left:14px;right:14px;display:grid;gap:4px;padding:8px;border:1px solid #34383b;border-radius:10px;background:#17191bf5;box-shadow:0 16px 40px #0009;backdrop-filter:blur(16px);animation:mobileMenuIn .18s ease-out}.mobile-nav a{padding:12px 14px;border-radius:7px;color:#f4f4f3;text-decoration:none;font-size:14px;font-weight:600}.mobile-nav a:active{background:#ffffff10}}
+    @media(max-width:700px){
+      .calculator,.calculator>* ,.calc-main,.calc-info,.work-list{min-width:0;max-width:100%}
+      .calc-main{overflow:hidden}
+      .calc-search,.calc-tabs{width:100%;max-width:100%;min-width:0}
+      .work-list{width:100%;overflow-x:hidden}
+      .work-row{width:100%;min-width:0;grid-template-columns:minmax(0,1fr) auto;gap:8px}
+      .work-row label{min-width:0;overflow-wrap:anywhere}
+    }
     @media(prefers-reduced-motion:reduce){.mobile-nav:not([hidden]){animation:none}}
   </style>
   <script>

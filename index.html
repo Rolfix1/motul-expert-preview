@@ -381,8 +381,8 @@
     body.photo-lightbox-open{overflow:hidden}
   </style>
   <script>
-    const photoTrackForViewer=document.querySelector('#photo-track');
-    if(photoTrackForViewer){
+    const photoTracksForViewer=[...document.querySelectorAll('#photo-track,.gallery-strip')];
+    if(photoTracksForViewer.length){
       const lightbox=document.createElement('div');
       lightbox.className='photo-lightbox';lightbox.hidden=true;lightbox.setAttribute('role','dialog');lightbox.setAttribute('aria-modal','true');lightbox.setAttribute('aria-label','Просмотр фотографии');
       const closeButton=document.createElement('button');closeButton.className='photo-lightbox-close';closeButton.type='button';closeButton.setAttribute('aria-label','Закрыть фотографию');closeButton.textContent='×';
@@ -391,7 +391,7 @@
       const content=document.createElement('div');content.append(image,caption);lightbox.append(closeButton,content);document.body.append(lightbox);
       let previousFocus=null;
       const closePhoto=()=>{lightbox.hidden=true;document.body.classList.remove('photo-lightbox-open');if(previousFocus)previousFocus.focus({preventScroll:true})};
-      photoTrackForViewer.addEventListener('click',event=>{const link=event.target.closest('a');if(!link)return;event.preventDefault();const thumb=link.querySelector('img');if(!thumb)return;previousFocus=link;image.src=thumb.currentSrc||thumb.src;image.alt=thumb.alt;caption.textContent=thumb.alt;lightbox.hidden=false;document.body.classList.add('photo-lightbox-open');closeButton.focus({preventScroll:true})});
+      photoTracksForViewer.forEach(track=>track.addEventListener('click',event=>{const link=event.target.closest('a');if(!link||!track.contains(link))return;event.preventDefault();const thumb=link.querySelector('img');if(!thumb)return;previousFocus=link;image.src=thumb.currentSrc||thumb.src;image.alt=thumb.alt;caption.textContent=thumb.alt;lightbox.hidden=false;document.body.classList.add('photo-lightbox-open');closeButton.focus({preventScroll:true})}));
       closeButton.addEventListener('click',closePhoto);
       lightbox.addEventListener('click',event=>{if(event.target===lightbox)closePhoto()});
       document.addEventListener('keydown',event=>{if(!lightbox.hidden&&event.key==='Escape')closePhoto()});
